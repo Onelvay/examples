@@ -1,0 +1,39 @@
+import psycopg2
+def store(acc_id):
+    conn = psycopg2.connect("dbname=project user=postgres password=Adg12332,")
+    cursor = conn.cursor()
+    cursor2 = conn.cursor()
+    cursor.execute('SELECT * FROM store')
+    store=cursor.fetchall()
+    cursor2.execute('SELECT * FROM want')
+    wanted=cursor2.fetchall()
+    
+
+    while True:
+        print('1:product_name, 2:priduct_category')
+        search=input()
+        if search=='1':
+            print('что вы хотите найти? ')
+            search=input()
+            for i in store:
+                if i [1] == search:
+                    print('Цена',i[3])
+                    print(wanted)
+                    for i in wanted:
+                        if i[0]==acc_id:
+                            update=i[1]+search+' '
+                            break
+                    sql_update_query = """Update want set list = %s where id = %s"""
+                    cursor2.execute(sql_update_query,(update,acc_id ))
+                    conn.commit()
+
+                    print('добавлено в желанное')
+
+                    return True
+        elif search=='2':
+            print('category')
+            search=input()
+            for i in store:
+                if i[2]==search:
+                    print(i[1],': ',i[3])
+            return True
