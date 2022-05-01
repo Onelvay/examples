@@ -150,7 +150,7 @@ class Post:
         self.cursor.execute('select text from tweets where user_id=%s',(self.user_id,))
         posts=self.cursor.fetchall()
         for post in posts:
-            print(post[1])
+            print(post[0])
         
 class Create_Account:
     def __init__(self,conn,cursor):
