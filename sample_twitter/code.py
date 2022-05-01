@@ -197,7 +197,7 @@ class New_Id:
 #     return records
 def main():
 
-    conn=psycopg2.connect('dbname=twitter user=postgres password=Adg12332,')
+    conn=psycopg2.connect('dbname=twitter user=postgres password=')
     cursor=conn.cursor()
     
     try:
